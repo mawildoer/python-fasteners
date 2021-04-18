@@ -32,3 +32,11 @@ def parse(s, default_unit):
         else:
             return nominal.plus_minus(tolerance)
 
+
+def range_to_pint(low, up, units=None):
+    if units is None:
+        unit = low.units
+    low = low.to(units)
+    up = up.to(units)
+    return ((up+low)/2).plus_minus((up-low)/2)
+
